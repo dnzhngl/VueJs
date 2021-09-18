@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJs | Yazılım Bilimi</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <input type="text" v-on:keypress="show($event)"> 
+             <button v-on:click="increase()">Increase</button>
+            -->
+        <!-- <input type="text" @keypress="show($event)"> -->
+        <input type="text" @keypress.enter="show2($event)">
+        <button @click="increase()">Increase The Number</button>
+        
+        <p v-text="number"></p>
+        <p>{{number}}</p>
+
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                number: 0
+            },
+            methods: {
+                increase: function () {
+                    this.number++
+                },
+                show(event) {
+                    if (event.keyCode == 13) {
+                        this.number += parseInt(event.target.value);
+                        // alert(event.target.value);
+                    }
+                    console.log(event.keyCode);
+                },
+                show2(event) {
+                    this.number += parseInt(event.target.value);
+                    console.log(event)
+                    console.log(event.keyCode);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

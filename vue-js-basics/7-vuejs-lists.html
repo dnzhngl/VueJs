@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJs | Yazılım Bilimi</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        ul {
+            margin: 0px;
+            margin-top: 10px;
+            padding: 0px;
+            list-style-type: none;
+            width: 300px;
+        }
+
+        li {
+            padding: 5px 5px;
+            margin-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .red {
+            background-color: coral;
+        }
+
+        .green {
+            background-color: limegreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="fruit in furitList">{{fruit}}</li>
+            <li v-for="fruit in furitList" v-text="fruit"></li>
+        </ul>
+        <ul>
+            <li v-for="item in 10">{{item}}</li>
+        </ul>
+        <hr>
+
+        <div v-for="(value, key) in personel">
+            <strong>{{ key + " : " }}</strong><span>{{ value }}</span>
+        </div>
+        <hr>
+
+        Number of items to sell : <input type="text" v-model="sellCount">
+        <ul>
+            <li v-for="product in productList" v-if="product.count > 0">
+                <span>{{ product.title }} - {{product.price}}$ - {{product.count}}</span>
+
+                <!-- <button @click="product.count-=sellCount">Sell</button> -->
+                <button v-if="product.count > 0" @click="sellProduct(product)">Sell</button>
+            </li>
+        </ul>
+        <hr>
+
+        Number of items to sell : <input type="text" v-model="sellCount">
+        <ul>
+            <li v-for="product in productList" :class=" {'green' : product.count > 0, 'red' : product.count <= 0 }">
+                <span>{{ product.title }} - {{product.price}}$ - {{product.count}}</span>
+                <button :disabled="product.count <= 0" @click="sellProduct(product)">Sell</button>
+            </li>
+        </ul>
+        <hr>
+
+        Number of items to sell : <input type="text" v-model="sellCount">
+        <ul>
+            <li v-for="product in productList" :class="backgroundByCount(product)">
+                <span>{{ product.title }} - {{product.price}}$ - {{product.count}}</span>
+                <button :disabled="product.count <= 0" @click="sellProduct(product)">Sell</button>
+            </li>
+        </ul>
+        <p style="color:red; font-weight:bold;" v-if="sellWarning" >The quantity you entered is more than the stock quantities.</p>
+    </div>
+    <script>
+        new Vue({
+            el : "#app",
+            data : {
+                furitList : ["Apple", "Pear", "Cherry"],
+                personel : {
+                    name: "Gökhan",
+                    lastname: "Kandemir",
+                    email: "gokhan@gkandemir.com"
+                },
+                sellCount : 0,
+                sellWarning : false,
+                productList : [
+                    {
+                        title: "MacBook Pro",
+                        price: 7000,
+                        count: 30
+                    },
+                    {
+                        title: "Bluetooth Mouse",
+                        price: 75,
+                        count: 265
+                    },
+                    {
+                        title: "Keyboard",
+                        price: 100,
+                        count: 150
+                    }
+                ]
+            },
+            methods : {
+                sellProduct(product) {
+                    if(this.sellCount > product.count ){
+                        this.sellWarning = true
+                    }else{
+                        product.count -= this.sellCount
+                        this.sellWarning = false
+                    }
+                },
+                backgroundByCount(product){
+                    return  {'green' : product.count > 0, 'red' : product.count <= 0 }
+                }
+            },
+            computed : {
+                
+            }
+        });
+    </script>
+</body>
+
+</html>

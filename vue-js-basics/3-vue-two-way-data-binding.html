@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJs | Yazılım Bilimi</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <!-- <input type="text" :value="number">         -->
+        <input type="text" v-model="number">        
+        <p>{{number}}</p>
+
+        <button @click="increase()">Increase</button>
+
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                number: 10
+            },
+            methods:{
+                increase(){
+                    this.number++
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

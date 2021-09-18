@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJs | Yazılım Bilimi</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p v-if="!showBox">It will be displayed when this page is opened.</p>
+        <p v-else-if="showBox">It will not be displayed when this page is opened..It will appear with the help of the button.</p>
+        <p v-else>The section that will appear otherwise.</p>
+
+        <button @click="showBox = !showBox">Show/Hide</button>
+
+        <hr>
+
+        <input type="text" v-model="age">
+        <p v-if="age < 18">Infant</p>
+        <p v-else-if="age >= 18">Major</p>
+        <p v-else>Age is not defined.</p>
+
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                showBox : false, 
+                age : 0
+            }
+        });
+    </script>
+</body>
+
+</html>

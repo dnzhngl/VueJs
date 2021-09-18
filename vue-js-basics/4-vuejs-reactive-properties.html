@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJs | Yazılım Bilimi</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <input type="text" v-model="age">
+        <p>JavaScript : {{age >= 18 ? "Major" : "Infant"}}</p>
+        <p>Method : {{writeAge()}}</p>
+        <p>Computed : {{writeAgeComp}}</p>
+
+        <hr>
+        <p>{{number}}</p>
+        <button @click="number++">Increase the number</button>
+
+    </div>
+    <script>
+        new Vue({
+            el : "#app",
+            data : {
+                age: 0,
+                number: 0
+            },
+            methods : {
+                writeAge() {
+                    console.log("Metod çalıştı.")
+                    return this.age >= 18 ? "Major" : "Infant";
+                }
+            },
+            computed : {
+                writeAgeComp() {
+                    console.log("Computed çalıştı.")
+                    return this.age >= 18 ? "Major" : "Infant";
+                }
+            },
+            watch : {
+                age(newValue, oldValue){
+                    console.log("New Value : ", newValue)
+                    console.log("Old Value : ", oldValue)
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

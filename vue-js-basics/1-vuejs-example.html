@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJs | Yazılım Bilimi</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{ title }}</h1>
+        <button>{{ buttonTitle }}</button>
+        <p>{{ paragraph }}</p> 
+        
+        <p v-text="paragraph"></p> 
+        <a v-bind:href="link"  v-bind:data-id="dataId">  Deniz Github   </a>
+        <br>
+        <a :href="link" :data-id="dataId"> Deniz Github  </a>
+        <p v-html="details"></p>
+        
+    </div>
+
+    <script>
+        new Vue({
+            el : "#app",
+            data : {
+                title : "Test başlık",
+                buttonTitle : "Tıkla Gelsin..",
+                paragraph : "lorem ipsum dolar sit amet...",
+                link : "https://github.com/dnzhngl",
+                dataId : "1", 
+                details : "<b> Bu bir haber detayıdır. </b>"
+            }
+        });
+
+    </script>
+</body>
+
+</html>
